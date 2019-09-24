@@ -2,10 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\ScientificInterest;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,10 +18,11 @@ class UserType extends AbstractType
 //            ->add('password')
             ->add('firstName')
             ->add('secondName')
-            ->add('birthDate', null, [
+            ->add('birthDate', DateType::class, [
                 'attr' => [
                     'class' => 'date-picker'
-                ]
+                ],
+                'widget' => 'single_text'
             ])
             ->add('email')
             ->add('patronymic')
