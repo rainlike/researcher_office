@@ -2,14 +2,20 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\TimestampTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
+    use TimestampTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -57,6 +63,36 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $patronymic;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $birthPlace;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $education;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $degree;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $biography;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\ScientificInterest", inversedBy="users")
+     */
+    private $interest;
+
+    public function __construct()
+    {
+        $this->interest = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -187,6 +223,80 @@ class User implements UserInterface
     public function setPatronymic(?string $patronymic): self
     {
         $this->patronymic = $patronymic;
+
+        return $this;
+    }
+
+    public function getBirthPlace(): ?string
+    {
+        return $this->birthPlace;
+    }
+
+    public function setBirthPlace(?string $birthPlace): self
+    {
+        $this->birthPlace = $birthPlace;
+
+        return $this;
+    }
+
+    public function getEducation(): ?string
+    {
+        return $this->education;
+    }
+
+    public function setEducation(?string $education): self
+    {
+        $this->education = $education;
+
+        return $this;
+    }
+
+    public function getDegree(): ?string
+    {
+        return $this->degree;
+    }
+
+    public function setDegree(string $degree): self
+    {
+        $this->degree = $degree;
+
+        return $this;
+    }
+
+    public function getBiography(): ?string
+    {
+        return $this->biography;
+    }
+
+    public function setBiography(?string $biography): self
+    {
+        $this->biography = $biography;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ScientificInterest[]
+     */
+    public function getInterest(): Collection
+    {
+        return $this->interest;
+    }
+
+    public function addInterest(ScientificInterest $interest): self
+    {
+        if (!$this->interest->contains($interest)) {
+            $this->interest[] = $interest;
+        }
+
+        return $this;
+    }
+
+    public function removeInterest(ScientificInterest $interest): self
+    {
+        if ($this->interest->contains($interest)) {
+            $this->interest->removeElement($interest);
+        }
 
         return $this;
     }

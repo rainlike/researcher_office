@@ -1,0 +1,19 @@
+@import "~bootstrap";
+
+.ro {
+  &-header-logo{
+    display: block;
+    height: 50px;
+    background: url("../img/icon.png") center center no-repeat;
+    background-size: contain;
+  }
+
+  &-login {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+
+  }
+}
+

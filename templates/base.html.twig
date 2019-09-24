@@ -9,7 +9,13 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block content %}
+            <div class="container">
+                {% include 'components/header.thml.twig' %}
+                {% block body %}{% endblock %}
+                {% include 'components/footer.thml.twig' %}
+            </div>
+        {% endblock %}
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}

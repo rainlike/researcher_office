@@ -54,7 +54,8 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
+    .enableSourceMaps(!Encore.isProduction())
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

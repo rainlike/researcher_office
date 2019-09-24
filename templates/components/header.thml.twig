@@ -1,0 +1,27 @@
+<header class="py-3">
+    <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-5 pt-1"></div>
+        <div class="col-2 text-center">
+            <a class="ro-header-logo text-dark" href="{{ path('ro_index') }}"></a>
+        </div>
+        <div class="col-5 d-flex justify-content-end align-items-center">
+            <a class="text-muted" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+            </a>
+            <a class="btn btn-sm btn-outline-secondary" href="{{ path('ro_logout') }}">Вихід</a>
+        </div>
+    </div>
+</header>
+
+<div class="py-1 mb-2">
+    <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-muted" href="#">Розклад</a>
+        <a class="p-2 text-muted" href="#">Публікації</a>
+        <a class="p-2 text-muted" href="#">Дипломні роботи</a>
+        <a class="p-2 text-muted" href="#">Новини</a>
+        <a class="p-2 text-muted" href="{{ path('scientific_interest_index') }}">Наукові інтереси</a>
+        {% if is_granted("ROLE_ADMIN") %}
+            <a class="p-2 text-muted" href="{{ path('user_index') }}">Список користувачів</a>
+        {% endif %}
+    </nav>
+</div>

@@ -2,36 +2,54 @@
 
 {% block title %}Log in!{% endblock %}
 
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        html, body {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 0 40px;
+            width: 100%;
+            justify-content: center;
+        }
+    </style>
+{% endblock %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('ro_logout') }}">Logout</a>
+{% block content %}
+    <form method="post" class="ro-login">
+        <div class="text-center">
+            <a class="ro-header-logo text-dark" href="{{ path('ro_index') }}"></a>
         </div>
-    {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername" class="sr-only">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.username }}, <a href="{{ path('ro_logout') }}">Logout</a>
+            </div>
+        {% endif %}
 
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" name="_remember_me"> Remember me
-        </label>
-    </div>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+            Sign in
+        </button>
+    </form>
 {% endblock %}

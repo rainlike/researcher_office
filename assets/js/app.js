@@ -6,9 +6,16 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../css/app.css');
+require('../scss/app.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-// const $ = require('jquery');
+const $ = require('jquery');
+
+import 'select2';                       // globally assign select2 fn to $ element
+import 'select2/dist/css/select2.css';
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+$(() => {
+    $('.select2').select2();
+});

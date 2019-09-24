@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ScientificInterest index{% endblock %}
+
+{% block body %}
+    <h1>ScientificInterest index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>NameCanonical</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for scientific_interest in scientific_interests %}
+            <tr>
+                <td>{{ scientific_interest.id }}</td>
+                <td>{{ scientific_interest.name }}</td>
+                <td>{{ scientific_interest.nameCanonical }}</td>
+                <td>
+                    <a href="{{ path('scientific_interest_show', {'id': scientific_interest.id}) }}">show</a>
+                    <a href="{{ path('scientific_interest_edit', {'id': scientific_interest.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('scientific_interest_new') }}">Create new</a>
+{% endblock %}

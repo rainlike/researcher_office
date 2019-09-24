@@ -60,3 +60,4 @@ yarn encore production
     CustomLog /var/log/apache2/tenders_symfony.log combined
 </VirtualHost>
 ```
+composer require annotations
