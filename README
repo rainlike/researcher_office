@@ -26,3 +26,8 @@ composer require orm-fixtures --dev
 bin/console make:fixtures
 
 composer require symfony/asset
+
+Webpack
+yarn encore dev
+yarn encore dev --watch
+yarn encore production
