@@ -24,3 +24,5 @@ php bin/console make:auth
 
 composer require orm-fixtures --dev
 bin/console make:fixtures
+
+composer require symfony/asset
