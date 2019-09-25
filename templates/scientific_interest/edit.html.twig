@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit ScientificInterest{% endblock %}
-
 {% block body %}
-    <h1>Edit ScientificInterest</h1>
+    <h1>Редагувати науковий інтерес</h1>
 
-    {{ include('scientific_interest/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('scientific_interest/_form.html.twig', {'button_label': 'Змінити'}) }}
 
-    <a href="{{ path('ro_scientific_interest_index') }}">back to list</a>
+    <a href="{{ path('ro_scientific_interest_index') }}" class="btn btn-sm btn-primary">Назад до списку</a>
 
     {{ include('scientific_interest/_delete_form.html.twig') }}
 {% endblock %}

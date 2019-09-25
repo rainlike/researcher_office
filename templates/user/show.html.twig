@@ -1,78 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
-
 {% block body %}
-    <h1>User</h1>
+    <div class="row jumbotron p-3 p-md-5 rounded bg-light">
+        <h1 class="col-md-12 font-italic py-3 px-0">{{ user.secondName ~ ' ' ~ user.firstName ~ ' ' ~ user.patronymic }}</h1>
+        <div class="col-md-3 px-0">
+            <div class="font-weight-bold">Дата народження</div>
+            {% if user.birthPlace is not null %}
+                <div class="font-weight-bold">Місце народження</div>
+            {% endif %}
+            {% if user.education is not null %}
+                <div class="font-weight-bold">Освіта</div>
+            {% endif %}
+            {% if user.degree is not null %}
+                <div class="font-weight-bold">Вчений ступінь</div>
+            {% endif %}
+            <div class="font-weight-bold">Username</div>
+            <div class="font-weight-bold">Email</div>
+            <div class="font-weight-bold">Учачник проекту з</div>
+        </div>
+        <div class="col-md-9 px-0">
+            <div>{{ user.birthDate|date }}</div>
+            <div>{{ user.birthPlace }}</div>
+            <div>{{ user.education }}</div>
+            <div>{{ user.degree }}</div>
+            <div>{{ user.username }}</div>
+            <div>{{ user.email }}</div>
+            <div>{{ user.createdAt|date }}</div>
+        </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ user.firstName }}</td>
-            </tr>
-            <tr>
-                <th>SecondName</th>
-                <td>{{ user.secondName }}</td>
-            </tr>
-            <tr>
-                <th>BirthDate</th>
-                <td>{{ user.birthDate ? user.birthDate|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Patronymic</th>
-                <td>{{ user.patronymic }}</td>
-            </tr>
-            <tr>
-                <th>BirthPlace</th>
-                <td>{{ user.birthPlace }}</td>
-            </tr>
-            <tr>
-                <th>Education</th>
-                <td>{{ user.education }}</td>
-            </tr>
-            <tr>
-                <th>Degree</th>
-                <td>{{ user.degree }}</td>
-            </tr>
-            <tr>
-                <th>Biography</th>
-                <td>{{ user.biography }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="#">Публікацій - {{ user.publications|length }}</a>
+                    </h3>
+                    <div class="mb-1 text-muted">
+                        {% if user.publications|length %}
+                            Last at {{ user.publications|last.date|date('M d, Y') }}
+                        {% else %}
+                            .
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="#">Дипломних проектів - {{ user.diplomas|length }}</a>
+                    </h3>
+                    <div class="mb-1 text-muted">
+                        {% if user.diplomas|length %}
+                            Last at {{ user.diplomas|last.date|date('M d, Y') }}
+                        {% else %}
+                            .
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('ro_user_index') }}">back to list</a>
+    <a href="{{ path('ro_user_index') }}" class="btn btn-sm btn-primary">Назад до списку</a>
 
-    <a href="{{ path('ro_user_edit', {'id': user.id}) }}">edit</a>
+    <a href="{{ path('ro_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-primary">Редагувати</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

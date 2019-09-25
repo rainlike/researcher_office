@@ -1,11 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New ScientificInterest{% endblock %}
-
 {% block body %}
-    <h1>Create new ScientificInterest</h1>
+    <h1>Додати новий науковий інтерес</h1>
 
     {{ include('scientific_interest/_form.html.twig') }}
 
-    <a href="{{ path('ro_scientific_interest_index') }}">back to list</a>
+    <a href="{{ path('ro_scientific_interest_index') }}" class="btn btn-sm btn-primary">Назад до списку</a>
 {% endblock %}

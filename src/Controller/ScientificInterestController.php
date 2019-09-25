@@ -49,16 +49,6 @@ class ScientificInterestController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ro_scientific_interest_show", methods={"GET"})
-     */
-    public function show(ScientificInterest $scientificInterest): Response
-    {
-        return $this->render('scientific_interest/show.html.twig', [
-            'scientific_interest' => $scientificInterest,
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="ro_scientific_interest_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, ScientificInterest $scientificInterest): Response

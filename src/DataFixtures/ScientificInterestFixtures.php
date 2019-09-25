@@ -9,7 +9,33 @@ class ScientificInterestFixtures extends BaseFixture
 {
     private static $interests = [
         'Big data',
-        'Computer science'
+        'Computer science',
+        'Python',
+        'Алгоритми',
+        'Web',
+        'Design',
+        'C++',
+        'Data science',
+        'Linus',
+        'Бази даних',
+        'C#',
+        'Android',
+        'Мобільна розробка',
+        'Java',
+        'Kotlin',
+        'iOS',
+        'Go',
+        'PHP',
+        'GameDev',
+        'Розробка ігор',
+        'Математика',
+        'DevOps',
+        'Тестування',
+        'Blockchain',
+        'Delphi',
+        'Pascal',
+        'Assembler',
+        'Графіка',
     ];
 
     protected function loadData(ObjectManager $manager)

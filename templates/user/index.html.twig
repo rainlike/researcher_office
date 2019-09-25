@@ -3,28 +3,30 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1>Колеги</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>ID</th>
+                <th>Ім'я</th>
+                <th>Звання</th>
+                <th>Кількість публікацій</th>
+                <th>Кількість дипломних проектів</th>
+                <th>Дії</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.secondName ~ ' ' ~ user.firstName }}</td>
+                <td>{{ user.degree }}</td>
+                <td>{{ user.publications|length }}</td>
+                <td>{{ user.diplomas|length }}</td>
                 <td>
-                    <a href="{{ path('ro_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('ro_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('ro_user_show', {'id': user.id}) }}" class="btn btn-primary btn-sm">Перегляд</a>
+                    <a href="{{ path('ro_user_edit', {'id': user.id}) }}" class="btn btn-primary btn-sm">Редагувати</a>
                 </td>
             </tr>
         {% else %}
@@ -35,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('ro_user_new') }}">Create new</a>
+{#    <a href="{{ path('ro_user_new') }}">Create new</a>#}
 {% endblock %}
