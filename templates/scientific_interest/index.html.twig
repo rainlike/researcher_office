@@ -21,8 +21,8 @@
                 <td>{{ scientific_interest.name }}</td>
                 <td>{{ scientific_interest.nameCanonical }}</td>
                 <td>
-                    <a href="{{ path('scientific_interest_show', {'id': scientific_interest.id}) }}">show</a>
-                    <a href="{{ path('scientific_interest_edit', {'id': scientific_interest.id}) }}">edit</a>
+                    <a href="{{ path('ro_scientific_interest_show', {'id': scientific_interest.id}) }}">show</a>
+                    <a href="{{ path('ro_scientific_interest_edit', {'id': scientific_interest.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('scientific_interest_new') }}">Create new</a>
+    <a href="{{ path('ro_scientific_interest_new') }}">Create new</a>
 {% endblock %}

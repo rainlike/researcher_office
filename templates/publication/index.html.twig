@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication index{% endblock %}
+
+{% block body %}
+    <h1>Publication index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>CoAuthorsSimple</th>
+                <th>Place</th>
+                <th>Date</th>
+                <th>Pages</th>
+                <th>Notes</th>
+                <th>File</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for publication in publications %}
+            <tr>
+                <td>{{ publication.id }}</td>
+                <td>{{ publication.name }}</td>
+                <td>{{ publication.coAuthorsSimple }}</td>
+                <td>{{ publication.place }}</td>
+                <td>{{ publication.date ? publication.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ publication.pages }}</td>
+                <td>{{ publication.notes }}</td>
+                <td>{{ publication.file }}</td>
+                <td>{{ publication.createdAt ? publication.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ publication.updatedAt ? publication.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('ro_publication_show', {'id': publication.id}) }}">show</a>
+                    <a href="{{ path('ro_publication_edit', {'id': publication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ro_publication_new') }}">Create new</a>
+{% endblock %}

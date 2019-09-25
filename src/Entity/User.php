@@ -89,9 +89,26 @@ class User implements UserInterface
      */
     private $interest;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Publication", mappedBy="coAuthors")
+     */
+    private $publications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Diploma", mappedBy="user", orphanRemoval=true)
+     */
+    private $diplomas;
+
     public function __construct()
     {
         $this->interest = new ArrayCollection();
+        $this->publications = new ArrayCollection();
+        $this->diplomas = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->getFirstName() . ' ' . $this->getSecondName();
     }
 
     public function getId(): ?int
@@ -296,6 +313,65 @@ class User implements UserInterface
     {
         if ($this->interest->contains($interest)) {
             $this->interest->removeElement($interest);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Publication[]
+     */
+    public function getPublications(): Collection
+    {
+        return $this->publications;
+    }
+
+    public function addPublication(Publication $publication): self
+    {
+        if (!$this->publications->contains($publication)) {
+            $this->publications[] = $publication;
+            $publication->addCoAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePublication(Publication $publication): self
+    {
+        if ($this->publications->contains($publication)) {
+            $this->publications->removeElement($publication);
+            $publication->removeCoAuthor($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Diploma[]
+     */
+    public function getDiplomas(): Collection
+    {
+        return $this->diplomas;
+    }
+
+    public function addDiploma(Diploma $diploma): self
+    {
+        if (!$this->diplomas->contains($diploma)) {
+            $this->diplomas[] = $diploma;
+            $diploma->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDiploma(Diploma $diploma): self
+    {
+        if ($this->diplomas->contains($diploma)) {
+            $this->diplomas->removeElement($diploma);
+            // set the owning side to null (unless already changed)
+            if ($diploma->getUser() === $this) {
+                $diploma->setUser(null);
+            }
         }
 
         return $this;

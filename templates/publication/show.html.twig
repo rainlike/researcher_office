@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <h1>Publication</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publication.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ publication.name }}</td>
+            </tr>
+            <tr>
+                <th>CoAuthorsSimple</th>
+                <td>{{ publication.coAuthorsSimple }}</td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td>{{ publication.place }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ publication.date ? publication.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Pages</th>
+                <td>{{ publication.pages }}</td>
+            </tr>
+            <tr>
+                <th>Notes</th>
+                <td>{{ publication.notes }}</td>
+            </tr>
+            <tr>
+                <th>File</th>
+                <td>{{ publication.file }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ publication.createdAt ? publication.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ publication.updatedAt ? publication.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ro_publication_index') }}">back to list</a>
+
+    <a href="{{ path('ro_publication_edit', {'id': publication.id}) }}">edit</a>
+
+    {{ include('publication/_delete_form.html.twig') }}
+{% endblock %}

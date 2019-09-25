@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ScientificInterestController extends AbstractController
 {
     /**
-     * @Route("/", name="scientific_interest_index", methods={"GET"})
+     * @Route("/", name="ro_scientific_interest_index", methods={"GET"})
      */
     public function index(ScientificInterestRepository $scientificInterestRepository): Response
     {
@@ -26,7 +26,7 @@ class ScientificInterestController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="scientific_interest_new", methods={"GET","POST"})
+     * @Route("/new", name="ro_scientific_interest_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -39,7 +39,7 @@ class ScientificInterestController extends AbstractController
             $entityManager->persist($scientificInterest);
             $entityManager->flush();
 
-            return $this->redirectToRoute('scientific_interest_index');
+            return $this->redirectToRoute('ro_scientific_interest_index');
         }
 
         return $this->render('scientific_interest/new.html.twig', [
@@ -49,7 +49,7 @@ class ScientificInterestController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="scientific_interest_show", methods={"GET"})
+     * @Route("/{id}", name="ro_scientific_interest_show", methods={"GET"})
      */
     public function show(ScientificInterest $scientificInterest): Response
     {
@@ -59,7 +59,7 @@ class ScientificInterestController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="scientific_interest_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="ro_scientific_interest_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, ScientificInterest $scientificInterest): Response
     {
@@ -69,7 +69,7 @@ class ScientificInterestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('scientific_interest_index');
+            return $this->redirectToRoute('ro_scientific_interest_index');
         }
 
         return $this->render('scientific_interest/edit.html.twig', [
@@ -79,7 +79,7 @@ class ScientificInterestController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="scientific_interest_delete", methods={"DELETE"})
+     * @Route("/{id}", name="ro_scientific_interest_delete", methods={"DELETE"})
      */
     public function delete(Request $request, ScientificInterest $scientificInterest): Response
     {
@@ -89,6 +89,6 @@ class ScientificInterestController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('scientific_interest_index');
+        return $this->redirectToRoute('ro_scientific_interest_index');
     }
 }

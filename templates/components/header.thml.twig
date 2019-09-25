@@ -15,13 +15,14 @@
 
 <div class="py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
+        <a class="p-2 text-muted" href="{{ path('ro_index') }}">Головна</a>
         <a class="p-2 text-muted" href="#">Розклад</a>
-        <a class="p-2 text-muted" href="#">Публікації</a>
-        <a class="p-2 text-muted" href="#">Дипломні роботи</a>
+        <a class="p-2 text-muted" href={{ path('ro_publication_index') }}>Публікації</a>
+        <a class="p-2 text-muted" href="{{ path('ro_diploma_index') }}">Дипломні роботи</a>
         <a class="p-2 text-muted" href="#">Новини</a>
-        <a class="p-2 text-muted" href="{{ path('scientific_interest_index') }}">Наукові інтереси</a>
+        <a class="p-2 text-muted" href="{{ path('ro_scientific_interest_index') }}">Наукові інтереси</a>
         {% if is_granted("ROLE_ADMIN") %}
-            <a class="p-2 text-muted" href="{{ path('user_index') }}">Список користувачів</a>
+            <a class="p-2 text-muted" href="{{ path('ro_user_index') }}">Список користувачів</a>
         {% endif %}
     </nav>
 </div>
