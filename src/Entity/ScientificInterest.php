@@ -60,6 +60,7 @@ class ScientificInterest
     public function setName(string $name): self
     {
         $this->name = $name;
+        $this->setNameCanonical(str_replace(' ', '_', strtolower($this->name)));
 
         return $this;
     }
