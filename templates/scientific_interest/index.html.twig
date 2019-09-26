@@ -1,18 +1,28 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Наукові інтереси</h1>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="pb-3 mb-4 font-weight-bold border-bottom">
+                    Наукові інтереси
+                </h3>
 
-    <div class="ro-group">
-        {% for scientific_interest in scientific_interests %}
-            <a href="{{ path('ro_scientific_interest_edit', {'id': scientific_interest.id}) }}" class="ro-group--link">
-                {{ scientific_interest.name }}
-                {% if scientific_interest.users|length %}
-                    - ({{ scientific_interest.users|length }})
-                {% endif %}
-            </a>
-        {% endfor %}
-    </div>
+                <div class="border-bottom pb-3 mb-4">
+                    <div class="ro-group">
+                        {% for scientific_interest in scientific_interests %}
+                            <a href="{{ path('ro_scientific_interest_edit', {'id': scientific_interest.id}) }}" class="ro-group--link">
+                                {{ scientific_interest.name }}
+                                {% if scientific_interest.users|length %}
+                                    - ({{ scientific_interest.users|length }})
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </div>
 
-    <a href="{{ path('ro_scientific_interest_new') }}" class="btn btn-sm btn-primary">Додати новий</a>
+                    <a href="{{ path('ro_scientific_interest_new') }}" class="btn btn-sm btn-outline-primary">Додати новий</a>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

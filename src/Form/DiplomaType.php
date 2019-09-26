@@ -16,7 +16,11 @@ class DiplomaType extends AbstractType
             ->add('name')
             ->add('author')
             ->add('date',DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'format'      => 'MMMM yyyy',
+                'attr' => [
+                    'class' => 'js-datepicker'
+                ]
             ])
             ->add('file')
         ;

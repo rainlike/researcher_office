@@ -1,5 +1,82 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{{ dump(content) }}
+{#    {{ dump(content) }}#}
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="pb-3 mb-4 font-weight-bold border-bottom">
+                    Розклад
+                </h3>
+                <h4 class="mb-4">
+                    Тиждень 1
+                </h4>
+                <table class="table table-striped mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Понеділок</th>
+                        <th scope="col">Вівторок</th>
+                        <th scope="col">Середа</th>
+                        <th scope="col">Четвер</th>
+                        <th scope="col">П'ятниця</th>
+{#                        <th scope="col">Субота</th>#}
+{#                        <th scope="col">Неділя</th>#}
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for lesson in content[1] if content[1] is defined %}
+                            <tr>
+                                <td>
+                                    {{ lesson|first|first.lesson_number }}<br />
+                                    {{ lesson|first|first.time_start[:5] }}<br />
+                                    {{ lesson|first|first.time_end[:5] }}
+                                </td>
+                                {% include 'schedule/_item.html.twig' with {'key': 1} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 2} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 3} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 4} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 5} %}
+{#                                {% include 'schedule/_item.html.twig' with {'key': 6} %}#}
+{#                                {% include 'schedule/_item.html.twig' with {'key': 7} %}#}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <h4 class="mb-4">
+                    Тиждень 2
+                </h4>
+                <table class="table table-striped mb-4">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Понеділок</th>
+                        <th scope="col">Вівторок</th>
+                        <th scope="col">Середа</th>
+                        <th scope="col">Четвер</th>
+                        <th scope="col">П'ятниця</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for lesson in content[2] if content[2] is defined %}
+                            <tr>
+                                <td>
+                                    {{ lesson|first|first.lesson_number }}<br />
+                                    {{ lesson|first|first.time_start[:5] }}<br />
+                                    {{ lesson|first|first.time_end[:5] }}
+                                </td>
+                                {% include 'schedule/_item.html.twig' with {'key': 1} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 2} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 3} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 4} %}
+                                {% include 'schedule/_item.html.twig' with {'key': 5} %}
+                                {# {% include 'schedule/_item.html.twig' with {'key': 6} %}#}
+                                {# {% include 'schedule/_item.html.twig' with {'key': 7} %}#}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
 {% endblock %}

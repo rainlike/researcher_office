@@ -14,15 +14,23 @@ class PublicationType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('coAuthors', null, [
+                'attr' => [
+                    'class' => 'js-select2'
+                ]
+            ])
             ->add('coAuthorsSimple')
             ->add('place')
             ->add('date',DateType::class, [
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'format'      => 'MMMM yyyy',
+                'attr' => [
+                    'class' => 'js-datepicker'
+                ]
             ])
             ->add('pages')
             ->add('notes')
             ->add('file')
-            ->add('coAuthors')
         ;
     }
 

@@ -18,9 +18,10 @@ class UserType extends AbstractType
             ->add('secondName')
             ->add('birthDate', DateType::class, [
                 'attr' => [
-                    'class' => 'date-picker'
+                    'class' => 'js-datepicker-full'
                 ],
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'format'      => 'dd MMMM yyyy',
             ])
             ->add('email')
             ->add('patronymic')
@@ -30,7 +31,7 @@ class UserType extends AbstractType
             ->add('biography')
             ->add('interest', null, [
                 'attr' => [
-                    'class' => 'select2'
+                    'class' => 'js-select2'
                 ]
             ])
         ;

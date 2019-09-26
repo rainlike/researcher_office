@@ -19,7 +19,7 @@
         <a class="p-2 text-muted" href="{{ path('ro_schedule') }}">Розклад</a>
         <a class="p-2 text-muted" href={{ path('ro_publication_index') }}>Публікації</a>
         <a class="p-2 text-muted" href="{{ path('ro_diploma_index') }}">Дипломні роботи</a>
-        <a class="p-2 text-muted" href="#">Новини</a>
+        <a class="p-2 text-muted" href="{{ path('ro_news') }}">Новини</a>
         <a class="p-2 text-muted" href="{{ path('ro_scientific_interest_index') }}">Наукові інтереси</a>
         {% if is_granted("ROLE_ADMIN") %}
             <a class="p-2 text-muted" href="{{ path('ro_user_index') }}">Колеги</a>

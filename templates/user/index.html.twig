@@ -3,39 +3,40 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>Колеги</h1>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="pb-3 mb-4 font-weight-bold border-bottom">
+                    Колеги
+                </h3>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Ім'я</th>
-                <th>Звання</th>
-                <th>Кількість публікацій</th>
-                <th>Кількість дипломних проектів</th>
-                <th>Дії</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.secondName ~ ' ' ~ user.firstName }}</td>
-                <td>{{ user.degree }}</td>
-                <td>{{ user.publications|length }}</td>
-                <td>{{ user.diplomas|length }}</td>
-                <td>
-                    <a href="{{ path('ro_user_show', {'id': user.id}) }}" class="btn btn-primary btn-sm">Перегляд</a>
-                    <a href="{{ path('ro_user_edit', {'id': user.id}) }}" class="btn btn-primary btn-sm">Редагувати</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="16">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                <div class="row">
+                    {% for user in users %}
+                        <div class="border-bottom pb-3 mb-4 row col-md-6">
+                            <h5 class="font-weight-bold col-md-12">{{ user.secondName ~ ' ' ~ user.firstName }}</h5>
+                            <div class="col-md-8">
+                                {% if user.degree %}
+                                    <p class="text-muted">
+                                        {{ user.degree }}
+                                    </p>
+                                {% endif %}
+                                <div>Кількість публікацій: {{ user.publications|length }}</div>
+                                <div>Кількість дипломних проектів: {{ user.diplomas|length }}</div>
+                            </div>
 
-{#    <a href="{{ path('ro_user_new') }}">Create new</a>#}
+                            <p class="col-md-4">
+                                <a href="{{ path('ro_user_show', {'id': user.id}) }}"
+                                   class="btn btn-outline-primary btn-sm mb-2">Перегляд</a>
+                                <a href="{{ path('ro_user_edit', {'id': user.id}) }}"
+                                   class="btn btn-outline-primary btn-sm mb-2">Редагувати</a>
+                            </p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <a href="{{ path('ro_user_new') }}"
+                   class="btn btn-outline-primary btn-sm">Додати колегу</a>
+            </div>
+        </div>
+    </main>
 {% endblock %}

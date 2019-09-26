@@ -1,49 +1,42 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Publication index</h1>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="pb-3 mb-4 font-weight-bold border-bottom">
+                    Публікації
+                </h3>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>CoAuthorsSimple</th>
-                <th>Place</th>
-                <th>Date</th>
-                <th>Pages</th>
-                <th>Notes</th>
-                <th>File</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for publication in publications %}
-            <tr>
-                <td>{{ publication.id }}</td>
-                <td>{{ publication.name }}</td>
-                <td>{{ publication.coAuthorsSimple }}</td>
-                <td>{{ publication.place }}</td>
-                <td>{{ publication.date ? publication.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ publication.pages }}</td>
-                <td>{{ publication.notes }}</td>
-                <td>{{ publication.file }}</td>
-                <td>{{ publication.createdAt ? publication.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ publication.updatedAt ? publication.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('ro_publication_show', {'id': publication.id}) }}">show</a>
-                    <a href="{{ path('ro_publication_edit', {'id': publication.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                {% for publication in publications %}
+                    <div class="border-bottom pb-3 mb-4 row">
+                        <h5 class="font-weight-bold col-md-12">{{ publication.name }}</h5>
+                        <div class="col-md-10">
+                            <p class="text-muted">
+                                {{ publication.date ? publication.date|date('D d/M/Y') : '' }} <br />
+                                {{ publication.coAuthorsSimple }}
+                            </p>
+                            <div>Місце публікації: {{ publication.place }}</div>
+                            {% if publication.pages %}
+                                <div>Сторінки: {{ publication.pages }}</div>
+                            {% endif %}
+                            <div>{{ publication.notes }}</div>
+                        </div>
 
-    <a href="{{ path('ro_publication_new') }}">Create new</a>
+                        <p class="col-md-2">
+                            <a href="{{ path('ro_publication_show', {'id': publication.id}) }}"
+                               class="btn btn-outline-primary btn-sm mb-2">Перегляд</a>
+                            <a href="{{ path('ro_publication_edit', {'id': publication.id}) }}"
+                               class="btn btn-outline-primary btn-sm mb-2">Редагувати</a>
+                            <a href="{{ path('ro_publication_delete', {'id': publication.id}) }}"
+                               class="btn btn-outline-danger btn-sm mb-2">Видалити</a>
+                        </p>
+                    </div>
+                {% endfor %}
+
+                <a href="{{ path('ro_publication_new') }}"
+                   class="btn btn-outline-primary btn-sm">Додати публікацію</a>
+            </div>
+        </div>
+    </main>
 {% endblock %}

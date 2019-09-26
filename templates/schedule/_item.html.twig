@@ -1,0 +1,10 @@
+<td>
+    {% if lesson[key] is defined %}
+        {{ lesson[key][0].lesson_full_name }}<br />
+        {{ lesson[key][0].lesson_room ~ ' ' ~ lesson[key][0].lesson_type }}<br />
+        {{ lesson[key][0].teacher_name }}<br />
+        {% for group in lesson[key][0].groups %}
+            {{ group.group_full_name|upper ~ ' ' }}
+        {% endfor %}
+    {% endif %}
+</td>

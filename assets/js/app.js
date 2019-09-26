@@ -4,18 +4,24 @@
  * We recommend including the built version of this JavaScript file
  * (and its CSS file) in your base layout (base.html.twig).
  */
-
-// any CSS you require will output into a single css file (app.css in this case)
 require('../scss/app.scss');
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
 
-import 'select2';                       // globally assign select2 fn to $ element
+import 'select2';
 import 'select2/dist/css/select2.css';
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+import 'bootstrap-datepicker';
+import 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css';
 
 $(() => {
-    $('.select2').select2();
+    $('.js-select2').select2();
+    $('.js-datepicker').datepicker({
+        format: "MM yyyy",
+        viewMode: "months",
+        minViewMode: "months"
+    });
+    $('.js-datepicker-full').datepicker({
+        format: "dd MM yyyy"
+    });
 });
